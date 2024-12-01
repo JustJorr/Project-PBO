@@ -1,1 +1,25 @@
+name: Image Replacement
 
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - path/to/your/image.jpg  # Specify the path to the image you want to monitor
+
+jobs:
+  replace_image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Replace Image
+        run: |
+          cp path/to/new/image.jpg path/to/your/image.jpg  # Replace with the actual paths
+          git config --local user.email "you@example.com"  # Set your email
+          git config --local user.name "Your Name"           # Set your name
+          git add path/to/your/image.jpg
+          git commit -m "Replace image with new upload"
+          git push
