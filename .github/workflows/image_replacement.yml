@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - path/to/your/image.jpg  # Specify the path to the image you want to monitor
+      - project_pbo.jpg  # Specify the path to the image you want to monitor
 
 jobs:
   replace_image:
@@ -17,9 +17,15 @@ jobs:
 
       - name: Replace Image
         run: |
-          cp path/to/new/image.jpg path/to/your/image.jpg  # Replace with the actual paths
-          git config --local user.email "you@example.com"  # Set your email
-          git config --local user.name "Your Name"           # Set your name
-          git add path/to/your/image.jpg
-          git commit -m "Replace image with new upload"
+          # Replace the existing image with the new one
+          cp project_pbo.jpg project_pbo_backup.jpg  # Optional: Backup the old image
+          cp path/to/new/image.jpg project_pbo.jpg  # Update this path to the new image location
+          
+          # Configure Git
+          git config --local user.email "jordanjosia929@gmail.com"  # Set your email
+          git config --local user.name "JustJorr"           # Set your name
+          
+          # Commit and push the changes
+          git add project_pbo.jpg
+          git commit -m "Replace project_pbo.jpg with new upload"
           git push
